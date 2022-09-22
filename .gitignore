@@ -1,0 +1,4 @@
+data/**/
+!data/scripts/
+!data/scripts/*
+build
