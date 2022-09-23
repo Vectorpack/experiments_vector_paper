@@ -168,7 +168,7 @@ int main(int argc, char** argv)
 {
 
     string input_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/data/");
-    string output_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/results/TEST_");
+    string output_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/results_data/TEST_");
     //string input_path("/nobackup/scscm/data_vector/");
     //string output_path("/nobackup/scscm/output_vector/");
 

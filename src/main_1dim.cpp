@@ -205,7 +205,7 @@ void run_BPPLIB(string& data_path, string& output_path,
 int main(int argc, char** argv)
 {
     string input_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/data/1dim/");
-    string output_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/results/TEST_");
+    string output_path("/home/mommess/Documents/Vectorpack/experiments_vector_paper/results_data/TEST_");
     //string input_path("/nobackup/scscm/data_vector/1dim/");
     //string output_path("/nobackup/scscm/output_vector/");
 
