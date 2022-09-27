@@ -10,6 +10,7 @@ def merge_multidim_OPT(benchmark_name):
     dfo = load_dataset(f"{benchmark_name}_base_OPT.csv")
     df["OPT"] = dfo["OPT"]
     cols = list(df.columns)
+    cols.remove('OPT')
     cols.insert(1, 'OPT')
     df.to_csv(f"{benchmark_name}_multidim_OPT.csv", sep='\t', columns=cols)
 
