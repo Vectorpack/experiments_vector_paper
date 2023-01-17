@@ -10,8 +10,7 @@ from instance import Instance
 from pathlib import Path
 # BASE_PATH points to the "data" folder
 BASE_PATH = Path(__file__).resolve().parent.parent
-#INSTANCES_PATH = BASE_PATH / "Hetero_instances_multidim"
-INSTANCES_PATH = BASE_PATH / "Hetero_instances_large"
+INSTANCES_PATH = BASE_PATH / "Irregular_instances_multidim"
 
 '''
 Generation script for instances of Vector Packing Problem.
@@ -68,11 +67,6 @@ def pick_sizes_gaussian(n, mu, sigma):
         sizes[i] = size
     return sizes
 
-'''def pick_single_gaussian(mu, sigma):
-    size = -1
-    while (size < 0) or (size > 100):
-        size = int(round(norm.rvs(loc=mu, scale=sigma)))
-    return size'''
 
 def generate_instance_gaussian(n, d, mu, sigma):
     list_dims = []
@@ -163,10 +157,10 @@ def generate_class6(n, d, nb_instances):
 
 
 def main(argv):
-    list_n = [2000, 5000]
+    list_n = [20, 40, 60, 120, 250, 500]
     list_d = [3, 5, 10]
 
-    nb_instances = 5 #10 # Nb of instances per configuration
+    nb_instances = 10 # Nb of instances per configuration
 
     # Generate class 1
     for n, d in product(list_n, list_d):

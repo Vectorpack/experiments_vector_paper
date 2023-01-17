@@ -186,7 +186,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        cout << "Usage: " << argv[0] << " <T|P|H> <class number>" << endl;
+        cout << "Usage: " << argv[0] << " <T|P|I> <class number>" << endl;
         return -1;
     }
 
@@ -206,7 +206,7 @@ int main(int argc, char** argv)
 
         if (class_name == "all")
         {
-            list_c = {"Caprara", "Falkenauer", "Mommessin"};
+            list_c = {"Caprara", "Falkenauer"};
         }
         else
         {
@@ -229,9 +229,9 @@ int main(int argc, char** argv)
             list_c.push_back(class_name);
         }
     }
-    else if (mode == "H")
+    else if (mode == "I")
     {
-        full_mode = "Hetero";
+        full_mode = "Irregular";
         list_n = {20, 40, 60, 120, 250, 500};
 
         if (class_name == "classall")

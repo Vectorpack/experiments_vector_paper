@@ -17,8 +17,6 @@ This is an extension of the generation method from
 
 Another class of triplets was defined by Caprara and Toth, 2001,
 "Lower bounds and algorithms for the 2-dimensional vector packing problem".
-
-Another class of triplets is newly defined by Mommessin et al. 2022.
 '''
 
 def generate_Falkenauer_triplet_sizes():
@@ -34,12 +32,6 @@ def generate_Caprara_triplet_sizes():
     c = 100 - a - b
     return (a,b,c)
 
-def generate_Mommessin_triplet_sizes():
-    a = randint(1,50)
-    b = randint(1,50)
-    c = 100 - a - b
-    return (a,b,c)
-
 
 def generate_triplets(n, d, triplet_class):
     nb_triplets = int(n/3)
@@ -52,8 +44,6 @@ def generate_triplets(n, d, triplet_class):
                 tri = generate_Falkenauer_triplet_sizes()
             elif triplet_class == "Caprara":
                 tri = generate_Caprara_triplet_sizes()
-            elif triplet_class == "Mommessin":
-                tri = generate_Mommessin_triplet_sizes()
 
             list_triplet.append(tri)
         (a,b,c) = list(zip(*list_triplet))
@@ -65,13 +55,12 @@ def generate_triplets(n, d, triplet_class):
 
 
 def main(argv):
-    # [1000, 2500, 5000] Only for large instances, with d in [3, 5, 10] as well
     list_n = [60, 120, 249, 501]
     list_d = [3, 5, 10]
 
     nb_instances = 10
 
-    classes = ["Falkenauer", "Caprara", "Mommessin"]
+    classes = ["Falkenauer", "Caprara"]
 
     for triplet_class in classes :
         out_path = INSTANCES_PATH / triplet_class

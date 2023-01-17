@@ -43,12 +43,12 @@ def merge_BPP_OPT(benchmark_name):
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
-        print(f"Usage: {sys.argv[0]} <Panigrahy|Hetero|<BPP_benchmark_name>")
+        print(f"Usage: {sys.argv[0]} <Panigrahy|Irregular|<BPP_benchmark_name>")
         sys.exit(1)
 
     benchmark_name = sys.argv[1]
 
-    if benchmark_name == "Panigrahy" or benchmark_name == "Hetero":
+    if benchmark_name == "Panigrahy" or benchmark_name == "Irregular":
         merge_multidim_OPT(benchmark_name)
     elif benchmark_name == "BPP":
         l = ["Falkenauer", "Scholl", "Waescher",

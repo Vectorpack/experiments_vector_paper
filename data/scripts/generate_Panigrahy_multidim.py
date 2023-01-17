@@ -7,8 +7,7 @@ from instance import Instance
 from pathlib import Path
 # BASE_PATH points to the "data" folder
 BASE_PATH = Path(__file__).resolve().parent.parent
-#INSTANCES_PATH = BASE_PATH / "Panigrahy_instances_multidim"
-INSTANCES_PATH = BASE_PATH / "Panigrahy_instances_TEST"
+INSTANCES_PATH = BASE_PATH / "Panigrahy_instances_multidim"
 
 '''
 Generation script for instances of Vector Packing Problem.
@@ -127,8 +126,7 @@ def generate_class9(n, d, nb_instances):
 
 
 def main(argv):
-    # [1000, 2500, 5000] Only for large instances, with d in [3, 5, 10] as well
-    list_n = [2000, 5000]
+    list_n = [20, 40, 60, 120, 250, 500]
     list_d = [3, 5, 10]
 
     # h is the bin capacity
@@ -141,7 +139,7 @@ def main(argv):
         "class6": {"h": 150, "alpha": 20, "beta": 100}
     }
 
-    nb_instances = 5 # Nb of instances per configuration
+    nb_instances = 10 # Nb of instances per configuration
 
     # Generate 6 first classes
     for class_i in range(1,7):
