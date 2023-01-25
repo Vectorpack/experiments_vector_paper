@@ -61,21 +61,6 @@ std::string run_for_instance(const Instance & instance,
     int UB = algoFF->solveInstance(hint_bin);
     delete algoFF;
 
-    for (const string & algo_name : list_pairing)
-    {
-        AlgoPairing * algo = createAlgoPairing(algo_name, instance);
-
-        auto start = high_resolution_clock::now();
-        sol = algo->solveInstanceMultiBin(LB, UB);
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(stop - start);
-
-        row_res.append("\t" + to_string(sol));
-        row_time.append("\t" + to_string((float)duration.count()));
-
-        delete algo;
-    }
-
     for (const string & algo_name : list_WFDm)
     {
         AlgoWFDm * algo = createAlgoWFDm(algo_name, instance);
@@ -96,7 +81,6 @@ std::string run_for_instance(const Instance & instance,
 
 void run_BPPLIB(string& data_path, string& output_path,
                 const vector<string> list_centric,
-                const vector<string> list_pairing,
                 const vector<string> list_WFDm,
                 const map<string, string> map_rename_algos,
                 string mode)
@@ -165,11 +149,6 @@ void run_BPPLIB(string& data_path, string& output_path,
             header.append("\t" + map_rename_algos.at(algo_name));
             time_header.append("\t" + map_rename_algos.at(algo_name) + "_timems");
         }
-        for (std::string algo_name : list_pairing)
-        {
-            header.append("\t" + map_rename_algos.at(algo_name));
-            time_header.append("\t" + map_rename_algos.at(algo_name) + "_timems");
-        }
         for (std::string algo_name : list_WFDm)
         {
             header.append("\t" + map_rename_algos.at(algo_name));
@@ -190,7 +169,7 @@ void run_BPPLIB(string& data_path, string& output_path,
 
                 const Instance instance(instance_name, data_path + instance_file);
 
-                string row_str = run_for_instance(instance, list_centric, list_pairing, list_WFDm);
+                string row_str = run_for_instance(instance, list_centric, list_WFDm);
                 f << instance_name << "\t" << row_str << "\n";
                 f.flush();
             }
@@ -223,16 +202,16 @@ int main(int argc, char** argv)
         "BF-L1-Unit",
         "WF-L1-Unit",
 
-        "BCS-L2Norm-Unit", // should be identical to FFD
+        // "BCS-L2Norm-Unit", // should be identical to FFD
     };
-    vector<string> list_LPTs = {
+    vector<string> list_WFDm = {
         "WFDm-BS-L1-Unit",
     };
-    vector<string> list_BIMs = {
-        "Pairing-BS-DP3-Unit",
+    /*vector<string> list_BIMs = {
+        "Pairing-BS-DP3-Unit", // Identical to BFD
 
         "Pairing-BS-L2Norm-Unit", // Should be like FFD
-    };
+    };*/
 
     map<string, string> map_rename_algos = {
         { "FF", "FF" },
@@ -242,17 +221,18 @@ int main(int argc, char** argv)
         { "BF-L1-Unit", "BF" },
         { "WF-L1-Unit", "WF" },
 
-        { "BCS-L2Norm-Unit", "BCS-L2Norm" },
+        //{ "BCS-L2Norm-Unit", "BCS-L2Norm" },
 
         { "WFDm-BS-L1-Unit", "WFDm" },
 
-        { "Pairing-BS-DP3-Unit", "Pairing-DP3" },
-        { "Pairing-BS-L2Norm-Unit", "Pairing-L2Norm" },
+        //{ "Pairing-BS-DP3-Unit", "Pairing-DP3" },
+        //{ "Pairing-BS-L2Norm-Unit", "Pairing-L2Norm" },
     };
 
     if (mode.front() == 'B')
     {
-        run_BPPLIB(input_path, output_path, list_centric, list_BIMs, list_LPTs, map_rename_algos, mode);
+        //run_BPPLIB(input_path, output_path, list_centric, list_BIMs, list_WFDm, map_rename_algos, mode);
+        run_BPPLIB(input_path, output_path, list_centric, list_WFDm, map_rename_algos, mode);
     }
 
     cout << "Run successful!" << endl;
