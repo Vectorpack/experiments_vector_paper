@@ -10,7 +10,7 @@ from instance import Instance
 from pathlib import Path
 # BASE_PATH points to the "data" folder
 BASE_PATH = Path(__file__).resolve().parent.parent
-INSTANCES_PATH = BASE_PATH / "Irregular_instances_multidim"
+INSTANCES_PATH = BASE_PATH / "New_instances_multidim"
 
 '''
 Generation script for instances of Vector Packing Problem.
