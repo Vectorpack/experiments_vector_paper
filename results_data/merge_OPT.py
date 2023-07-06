@@ -12,7 +12,7 @@ def merge_multidim_OPT(benchmark_name):
     cols = list(df.columns)
     cols.remove('OPT')
     cols.insert(1, 'OPT')
-    df.to_csv(f"{benchmark_name}_multidim_OPT.csv", sep='\t', columns=cols)
+    df.to_csv(f"{benchmark_name}_multidim_full.csv", sep='\t', columns=cols)
 
 
 def merge_BPP_OPT(benchmark_name):
