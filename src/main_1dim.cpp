@@ -1,4 +1,4 @@
-#include <utils.hpp>
+#include <algo_utils.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -30,7 +30,6 @@ std::string format_algo_list(const vector<string> & list)
 
 std::string run_for_instance(const Instance & instance,
                              const vector<string> & list_centric,
-                             const vector<string> & list_pairing,
                              const vector<string> & list_WFDm)
 {
     int LB = LB_BPP(instance);

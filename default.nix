@@ -3,12 +3,28 @@
     pkgs ? import <nixpkgs> {} # To be able to use the shell without internet on NixOS
 }:
 let
-    vectorpack_lib = pkgs.stdenv.mkDerivation {
-        name = "vectorpack_cpp";
+    vectorpack_lib = pkgs.stdenv.mkDerivation rec {
+        name = "Vectorpack_cpp";
         buildInputs = [ pkgs.cmake ];
-        src = fetchTarball "https://github.com/Vectorpack/Vectorpack_cpp/archive/master.tar.gz"; #TODO: put a specific release/tag
-        
+        src = pkgs.fetchFromGitHub {
+            owner = "Vectorpack";
+            repo = name;
+            rev = "de50bc4ab093e3b39416e21381a377bd9de23b32"; # Specific commit
+            sha256 = "sha256-4cyUAQoUsF8iILMJVaNiR8W+StVSk+p3fdgqsQ0Q5mM=";
+        };
         enableParallelBuilding = true;
+    };
+
+    VPSolver_light = pkgs.stdenv.mkDerivation rec {
+        name = "VPSolver_light";
+        buildInputs = [ pkgs.cmake ];
+        propagatedBuildInputs = [ pkgs.gurobi ];
+        src = pkgs.fetchFromGitHub {
+            owner = "Vectorpack";
+            repo = name;
+            rev = "fbe8b246c5fa8ff5281cf58a7577b1bdcb7b530c"; # Specific commit
+            sha256 = "sha256-QkkLvRg7CRaw9l22TLKemBds8Y9kAyutu6Acklntsrs=";
+        };
     };
 
     jobs = rec {
@@ -27,7 +43,7 @@ let
         };
 
         expes = pkgs.stdenv.mkDerivation {
-            name = "shell-expe";
+            name = "expe";
 
             buildInputs = [ pkgs.cmake vectorpack_lib ];
 
@@ -46,6 +62,24 @@ let
             '';
         };
 
-        ## TODO: one more package with Gurobi and VPSolver
+        expes-gurobi = pkgs.stdenv.mkDerivation {
+            name = "expe-gurobi";
+            buildInputs = [
+                pkgs.cmake
+                vectorpack_lib
+                VPSolver_light
+            ];
+
+            src = pkgs.lib.sourceByRegex ./. [
+                "^CMakeLists.txt"
+                "^src"
+                "^src/main_VPS.cpp"
+            ];
+
+            installPhase = ''
+                mkdir -p $out
+                cp main_VPS $out/
+            '';
+        };
     };
 in jobs
