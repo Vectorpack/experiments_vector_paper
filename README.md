@@ -1,5 +1,5 @@
  
-This repository contains all data related to experiments made for the paper "Classification and evaluation of the algorithms for vector bin packing", currently submitted to COR and available in pre-print version at https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4450606.
+This repository contains all data related to experiments made for the paper "Classification and evaluation of the algorithms for vector bin packing", published in COR and available at https://www.sciencedirect.com/science/article/pii/S0305054824003320.
 
 Note that this repository also contains materials for experiments in 1 dimension, which is a work in progress.
 
